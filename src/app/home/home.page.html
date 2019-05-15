@@ -1,14 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content no-padding>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="refresh('crazy')" color="tertiary"><ion-icon name="rocket"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button (click)="refresh()" color="tertiary"><ion-icon name="happy"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="refresh('gif')" color="tertiary">GIF</ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <div [class.visually-hidden]="initial" class="meme-container" tappable (click)="presentModal()">
+    <img [src]="imageSrc" (load)="imageLoaded()" onError="imageLoaded()"> 
+    <h2 [innerHTML]="quote" [style.color]="textColor"></h2>
   </div>
+  <ng-container *ngIf="initial">
+    <h2 [innerHTML]="initialMessage" class="initial-message"></h2>
+    <p [innerHTML]="initialDescription" class="initial-description">
+  </ng-container>
 </ion-content>

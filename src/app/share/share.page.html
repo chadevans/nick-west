@@ -1,0 +1,17 @@
+<div class="close-box">
+  <ion-button (click)="closeModal()" fill="clear">
+    <ion-icon name="close" color="dark" size="large"></ion-icon>
+  </ion-button>
+</div>
+<div class="full-height">
+  <div id="canvas" [style.border-color]="textColor">
+    <img [src]="imageSrc">
+    <h2 [innerHTML]="quote" [style.color]="textColor"></h2>
+  </div>
+  <div class="share-wrapper">
+    <ion-button (click)="shareImage()" expand="full" color="dark">
+      <ion-icon slot="start" name="share" size="large"></ion-icon>
+      Share
+    </ion-button>
+  </div>
+</div>

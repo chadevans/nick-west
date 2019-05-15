@@ -1,1 +1,36 @@
+h2 {
+  padding: 0 20px 20px;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  margin-top: 12px;
 
+  &.initial-message {
+    text-align: center;
+    margin-top: 50%;
+  }
+}
+
+p {
+
+  &.initial-description {
+    text-align: center;
+    padding: 0 20%;
+  }
+}
+
+ion-fab {
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+.meme-container {
+  margin-top: env(safe-area-inset-top);
+}
+
+.visuallyhidden { 
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}

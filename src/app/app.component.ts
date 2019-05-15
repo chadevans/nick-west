@@ -19,8 +19,15 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      if (this.platform.is('ios')) {
+        this.statusBar.styleDefault();
+      } else {
+        this.statusBar.styleBlackOpaque();
+      }
+      
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 1000);
     });
   }
 }

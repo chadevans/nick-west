@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
+import { FileService } from './file.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(public http: HTTP) { }
+  constructor(public http: HTTP, public file: FileService) { }
 
   async getNickCageImage(type: string): Promise<string> {
     // placecage.com api
@@ -21,14 +22,21 @@ export class ApiService {
     const random: number = Math.random() * (max - min) + min;
     const int: number = Math.round(random) * 10;
 
+    let url: string;
+
     switch(type) {
       case 'crazy':
-        return `${api}/${crazy}/${int}/${int}`;
+        url = `${api}/${crazy}/${int}/${int}`;
+        break;
       case 'gif':
-        return `${api}/${gif}/${int}/${int}`;
+        url = `${api}/${gif}/${int}/${int}`;
+        break;
       default:
-        return `${api}/${int}/${int}`;
+        url = `${api}/${int}/${int}`;
     }
+
+    await this.file.downloadImage(url);
+    return await this.file.loadLocalImage();
   }
 
   async getKanyeQuote(): Promise<string> {

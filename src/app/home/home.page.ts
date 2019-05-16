@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { SharePage } from '../share/share.page';
-import { ApiService } from '../services/api.service';
-import { FileService } from '../services/file.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +23,6 @@ export class HomePage {
 
   constructor(
     public api: ApiService,
-    public file: FileService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
   ) {}
@@ -55,7 +53,6 @@ export class HomePage {
     if (this.loading) {
       this.quote = this.quoteNext;
       this.textColor = this.textColorNext;
-      await this.file.downloadImage(this.imageSrc);
       await this.dismissLoadingScreen();
     }
   }

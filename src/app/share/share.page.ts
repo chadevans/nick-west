@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { FileService } from '../services/file.service';
-import * as html2canvas from 'html2canvas';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-share',
@@ -19,7 +19,6 @@ export class SharePage implements OnInit {
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
-    public file: FileService,
     private socialSharing: SocialSharing
   ) {}
 
@@ -27,11 +26,6 @@ export class SharePage implements OnInit {
     this.quote = this.navParams.data.quote;
     this.imageSrc = this.navParams.data.imageSrc;
     this.textColor = this.navParams.data.textColor;
-    this.loadLocalImage();
-  }
-
-  async loadLocalImage(): Promise<void> {
-    this.imageSrc = await this.file.loadLocalImage();
   }
 
   async shareImage(): Promise<void> {
@@ -40,12 +34,9 @@ export class SharePage implements OnInit {
       const imageShare: string = await this.convertCanvasToImage(canvas);
       console.log('image share',imageShare);
       this.shareOpen = true;
-      this.socialSharing.shareWithOptions({
-        files: [imageShare]
-      }).then(() => {
-        this.shareOpen = false;
-        this.closeModal();
-      })
+      await this.socialSharing.shareWithOptions({ files: [imageShare] });
+      this.shareOpen = false;
+      this.closeModal();
     }
   }
 

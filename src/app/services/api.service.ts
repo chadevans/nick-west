@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor(public http: HTTP, public file: FileService) { }
 
-  async getNickCageImage(type: string): Promise<string> {
+  async getNickCageImage(type?: string): Promise<string> {
     // placecage.com api
     // example: http://www.placecage.com/600/400
     // crazy version: http://www.placecage.com/c/600/400

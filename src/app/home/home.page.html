@@ -14,7 +14,7 @@
     </ion-fab-list>
   </ion-fab>
   <div [class.visually-hidden]="initial" class="meme-container" tappable (click)="presentModal()">
-    <img [src]="imageSrc" (load)="imageLoaded()" onError="imageLoaded()"> 
+    <img [src]="imageSrc" (load)="imageLoaded()" (error)="imageLoaded()"> 
     <h2 [innerHTML]="quote" [style.color]="textColor"></h2>
   </div>
   <ng-container *ngIf="initial">

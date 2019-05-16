@@ -18,7 +18,7 @@ export class HomePage {
   quote: string = '';
   quoteNext: string = '';
   imageSrc: string = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-  textColor: string = '#fff';
+  textColor: string = '#000';
   textColorNext: string = '';
 
   constructor(
